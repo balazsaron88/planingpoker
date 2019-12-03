@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.group;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.planningpoker.model.Group;
+import com.example.planningpoker.R;
+import com.example.planningpoker.group.model.Group;
 
 import java.util.List;
 
@@ -66,5 +67,4 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
             groupNameTextView = itemView.findViewById(R.id.tv_group_name);
         }
     }
-
 }

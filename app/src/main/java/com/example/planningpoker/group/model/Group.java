@@ -1,4 +1,4 @@
-package com.example.planningpoker.model;
+package com.example.planningpoker.group.model;
 
 import java.util.List;
 
