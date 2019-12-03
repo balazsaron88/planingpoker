@@ -4,9 +4,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.planningpoker.model.Group;
+import com.example.planningpoker.group.GroupFragment;
+import com.example.planningpoker.group.GroupListFragment;
+import com.example.planningpoker.login.LoginFragment;
+import com.example.planningpoker.group.model.Group;
 
-public class MainActivity extends AppCompatActivity implements MainView{
+public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,15 +17,22 @@ public class MainActivity extends AppCompatActivity implements MainView{
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, GroupListFragment.newInstance(), "")
+                .add(R.id.container, LoginFragment.newInstance(), "")
                 .commit();
     }
 
     @Override
-    public void showGroup(Group group) {
+    public void showEditGroup(Group group) {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, GroupFragment.newInstance(group.getId()), "")
                 .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void showGroupListing() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, GroupListFragment.newInstance(), "")
                 .commit();
     }
 
