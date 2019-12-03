@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +38,7 @@ public class GroupFragment extends Fragment {
     }
 
     private String groupId;
-    private EditText groupNameEditText;
+    private TextView groupNameTextView;
     private EditText questionEditText;
     private ImageView addImageView;
     private RecyclerView recyclerView;
@@ -54,7 +55,7 @@ public class GroupFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        groupNameEditText = view.findViewById(R.id.et_group_name);
+        groupNameTextView = view.findViewById(R.id.et_group_name);
         questionEditText = view.findViewById(R.id.et_question);
         addImageView = view.findViewById(R.id.img_add_question);
         recyclerView = view.findViewById(R.id.recycler_view_questions);
@@ -64,7 +65,7 @@ public class GroupFragment extends Fragment {
         } else {
             // Edit group
             groupId = getArguments().getString("key_id");
-            groupNameEditText.setText(groupId);
+            groupNameTextView.setText(groupId);
         }
 
 
