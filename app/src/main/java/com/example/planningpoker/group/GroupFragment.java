@@ -60,14 +60,9 @@ public class GroupFragment extends Fragment {
         addImageView = view.findViewById(R.id.img_add_question);
         recyclerView = view.findViewById(R.id.recycler_view_questions);
 
-        if (getArguments() == null) {
-            // New group
-        } else {
-            // Edit group
-            groupId = getArguments().getString("key_id");
-            groupNameTextView.setText(groupId);
-        }
-
+        // Edit group
+        groupId = getArguments().getString("key_id");
+        groupNameTextView.setText(groupId);
 
         questionList = new ArrayList<>();
         questionAdapter = new QuestionAdapter();
