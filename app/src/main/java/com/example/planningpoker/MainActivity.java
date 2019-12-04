@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planningpoker.group.GroupFragment;
 import com.example.planningpoker.group.GroupListFragment;
-import com.example.planningpoker.login.LoginFragment;
 import com.example.planningpoker.group.model.Group;
+import com.example.planningpoker.group.model.Question;
+import com.example.planningpoker.login.LoginFragment;
+import com.example.planningpoker.question.QuestionFragment;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
@@ -17,14 +19,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, LoginFragment.newInstance(), "")
+                .replace(R.id.container, LoginFragment.newInstance(), "")
                 .commit();
     }
 
     @Override
     public void showEditGroup(Group group) {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, GroupFragment.newInstance(group.getId()), "")
+                .replace(R.id.container, GroupFragment.newInstance(group.getId()), "")
                 .addToBackStack(null)
                 .commit();
     }
@@ -37,8 +39,19 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
+    public void showQuestion(Question question) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, QuestionFragment.newInstance(question), "")
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        getSupportFragmentManager().popBackStack();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

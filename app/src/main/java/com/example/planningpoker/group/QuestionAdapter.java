@@ -16,6 +16,7 @@ import java.util.List;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder> {
 
     private List<Question> questions;
+    private ClickListener listener;
 
     @NonNull
     @Override
@@ -28,6 +29,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     public void onBindViewHolder(@NonNull QuestionViewHolder holder, int position) {
         final Question question = questions.get(position);
         holder.questionTextView.setText(question.getQuestion());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null){
+                    listener.onQuestionClicked(question);
+                }
+            }
+        });
     }
 
 
@@ -39,6 +48,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     public void setList(List<Question> questions) {
         this.questions = questions;
         notifyDataSetChanged();
+    }
+
+    public void setListener(ClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface ClickListener{
+        void onQuestionClicked(Question question);
     }
 
     public static class QuestionViewHolder extends RecyclerView.ViewHolder {

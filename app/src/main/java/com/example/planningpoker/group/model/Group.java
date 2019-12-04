@@ -6,8 +6,6 @@ public class Group {
     private String id;
     private List<Question> questions;
 
-    public Group(){}
-
     public Group(String  id) {
         this.id = id;
     }

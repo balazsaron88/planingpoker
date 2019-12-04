@@ -1,5 +1,6 @@
 package com.example.planningpoker.group;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.planningpoker.MainView;
 import com.example.planningpoker.R;
 import com.example.planningpoker.group.model.Question;
 import com.google.firebase.database.DataSnapshot;
@@ -44,11 +46,18 @@ public class GroupFragment extends Fragment {
     private RecyclerView recyclerView;
     private QuestionAdapter questionAdapter;
     private List<Question> questionList;
+    private MainView mainView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_group_detail, container, false);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mainView = (MainView) context;
     }
 
     @Override
@@ -68,6 +77,13 @@ public class GroupFragment extends Fragment {
         questionAdapter = new QuestionAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(questionAdapter);
+
+        questionAdapter.setListener(new QuestionAdapter.ClickListener() {
+            @Override
+            public void onQuestionClicked(Question question) {
+                mainView.showQuestion(question);
+            }
+        });
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("groups/" + groupId + "/questions");

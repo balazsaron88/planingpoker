@@ -1,11 +1,11 @@
 package com.example.planningpoker.group.model;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
 
     private String id;
     private String question;
-
-    public Question(){}
 
     public Question(String id, String question) {
         this.id = id;
@@ -22,9 +22,5 @@ public class Question {
 
     public String getQuestion() {
         return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
     }
 }
