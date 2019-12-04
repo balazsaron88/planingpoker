@@ -20,12 +20,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
 
     @NonNull
     @Override
+    //*letrehozza a list viewekat +- 2 a recycleviewban
     public GroupViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_group, parent, false);
         return new GroupViewHolder(view);
     }
 
     @Override
+    //adattal bindolja a view-t
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         final Group group = groups.get(position);
         holder.groupNameTextView.setText(group.getId() + "");
@@ -37,7 +39,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
                 }
             }
         });
-
     }
 
     @Override
